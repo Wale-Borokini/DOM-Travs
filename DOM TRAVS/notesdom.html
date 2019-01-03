@@ -1,0 +1,2198 @@
+WE ARE ARE MAKING USE OF THE (index.html) page here
+
+The html page will basically be what we will be working with.
+
+we'll use the developer tools(console) for our output for a while & once we get into actually changing things in the DOM, we will be able to change text & styles & all that.
+The 1st thing I'll do is to examine the document object. (the document is at the top & under that, we basicallly have a tree of elements). 
+
+//EXAMINE THE DOCUMENT OBJECT(we can use them all from within our scripts when we create a javascript program.It isn't read only. if we want to change anything there, we can do that)
+
+we can type this in the console.
+
+alert(1).
+
+Everything we do in our file, we could actually do in our console. but I'll do it the "notes", so I can have it as a reference.
+
+console.dir(document);
+
+(we passed in the document object) What this will do is that it will show us all of the different properties & methods attached  to the document object. We have the url we can access, we have document.all which will give us an Array(not an Array, but an html collection of everything inside that page). it will display a very large tree of properties in the console
+
+
+console.log(document.domain);
+
+
+this will give us whatevr domain name we are running.
+
+
+We can also access the url by saying:
+
+
+console.log(document.URL);
+
+
+This basically gives us the entire URL.
+
+THE PAGE TITLE BELOW.
+
+
+console.log(document.title);
+
+
+And we get "Item Lister" (that's the title)
+
+
+console.log(document.doctype);
+
+
+We can also look at the head and body
+
+
+console.log(document.head);
+
+
+body:
+
+
+console.log(document.body)
+
+
+Which will grab the body for us and output it.
+
+
+We can as well do the document.all (and what this will give us is an Array or an html collection of everything that is in the DOM) We will get the length of everythinh in the html. Which is 24(it starts at 0 & ends at 23)
+
+
+console.log(document.all);
+
+
+To view a particular line:
+
+
+console.log(document.all[10]);
+
+
+Then we'll get the "h1"  in our HTML.
+
+
+We can change things based on our selector.
+
+
+document.all[10].textContent = 'Hello';
+
+
+& we will notice that the header has changed to "Hello". Anything we add here will be added to our document collection. Which is 	document.all
+
+
+To get all the forms on the page, we can say:
+
+
+console.log(document.forms);
+
+
+We have just 1 form. So we'll get it starting with a "0" index just like a rgular Array (if we have 2, it'll be a "1" index). We can get all the different properties of our form.
+
+
+We can do the same thing with links:
+
+
+console.log(document.links);
+
+
+We don't have any links, so we just have an empty Array. It is actually an HTML collection, not an Array. Thers's actually a difference, like using the   .reverse    which is an Array method in javascript.(to do this, you'll have to change it into an Array) But you can select items like it's an Array.
+
+
+If you want to select a certain item like in the form, we have our 0 index :
+
+
+console.log(document.forms[0]);
+
+
+And it will give us the actual form.
+
+
+we can do for images:
+
+
+console.log(document.images);
+
+
+We don't have any, so we get an empty collection.
+
+
+console.document will give us all the items we can work with. but these are just the interesting ones above.
+
+
+
+LET'S LOOK AT SELECTORS.
+BASICALLY, WE HAVE FEW DIFFERENT SELECTING methods we can use to Querry the DOM. The first one we'll look at is the "GETELEMENTBYID". In our html, we have an id with "header-title"	:
+
+
+console.log(document.getElementById('header-title'));
+
+
+In our console, we'll get the h1 "Item Lister" Header title. We can also put it inside of a variable:
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+
+
+Then we'll get the same thing as the previous code.
+
+We can do certain things with this header, we can change the text. let's change the textContent to "Hello".
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+headerTitle.textContent = "Hello";
+
+
+We have now changed our HTML header to "hello". In addition to textContent, we also have innerText, which does the same things for the most part.
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+headerTitle.textContent = "Hello";
+headerTitle.innerText = "Goodbye";
+
+
+& we can see the geader has changed to "Goodbye", Because we basically just overwrote the "Hello" with "Goodbye".
+The difference between innerText & textContent is that One of the pays attention to the style.
+If we go into our h1 & put in a <span>123,
+	then we put this code, we'll get Item Lister 123 in the html header:
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+
+
+Let's go ahead and console.log headerTitle & textContent
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+console.log(headerTitle.textContent);
+
+
+We'll get the "Item Lister 123". Sp if go to the HTML to add a a style to the span. A style of "display:none". the 123 will disappear in the webpage. But textContent is still showing the "123". Iis disregarding that <span>, even though it is set to "display:none". Nut if we change this to innerText, the "123" will disappear in the console & webpage.
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+console.log(headerTitle.innerText);
+
+
+So the innerText actually pays attention to the style. That's the biggest differences between the 2. But we can use them for the most part, pretty inter-changeably.
+
+
+INNERHTML
+Let's add an h3.
+
+
+var headerTitle = document.getElementById('header-title');
+console.log(headerTitle);
+headerTitle.innerHTML = '<h3>Hello</h3>';
+
+
+We now have an <h3></h3> with "Hello". The h3 is now inside the h1 now, it doesn't change the h1 to an h3. IT puts the  HTML inside the DOM element. That's what innerHTML does. If you want to change the h1 to an h3, you'll have to use some other method to access the parentElement & it is a little more advance.
+But we have to keep in mind the 3 methods;
+1. textContent
+2. innerText
+3. innerHTML
+
+
+We can also do style changes.
+
+
+var headerTitle = document.getElementById('header-title');
+
+So, now we just have the "headerTitle".
+
+
+Let's change the border-bottom
+
+
+var headerTitle = document.getElementById('header-title');
+headerTitle.style.borderBottom = 'solid 3px #000';
+
+
+In the browser, We can see that the h1 has the border. 
+
+
+To put the border on the header, we say:
+
+
+var header = document.getElementById('main-header');
+header.style.borderBottom = 'solid 3px #000';
+
+
+We can change the style with style.wahtever the css property.
+
+
+
+GETELEMENTSBYCLASSNAME(notice that this is plural)
+Lets say we want to get all these list items.
+the list items has a className of 	"list-group-item".
+So we'll put it in a variable:
+
+
+var items = document.getElementsByClassName('list-group-items');
+console.log(items);
+
+
+So it gives us an HTML collection, just like what document.all 	 gives us. And each li has an index starting from "0". We can access individual elements by:
+
+console.log(items[1]);
+
+
+we will get the 2nd one, because it starts at "0". they are "0 based"
+
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+
+
+
+We can change the text of that particular by:
+
+items[1].textContent = 'hello 2';
+
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent = 'hello 2';
+
+
+We can see the "item 2" has changed to "hello 2"
+
+
+To change the style of item 1 (change the fontWeight) :
+
+items[1].style.fontWeight = 'bold';
+
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent = 'hello 2';
+items[1].style.fontWeight = 'bold';
+
+
+We can see that "hello 2" is now bold when we reloaded the browser.
+
+
+Let's do a backgroundColor for items 1:
+
+
+items[1].style.backgroundColor = 'yellow';
+
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent = 'hello 2';
+items[1].style.fontWeight = 'bold';
+items[1].style.backgroundColor = 'yellow';
+
+
+"hello 2 now has a yellow background".
+
+
+A lot of things done with jQuerry can be done here.
+
+
+let's give all th list items a lightgrey background. so we'll use a for loop & say:
+
+
+for(var i = 0; i < items.length; i++){
+	items[i].style.backgroundColor = '#f4f4f4';
+}
+
+THE CODE:
+
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent = 'hello 2';
+items[1].style.fontWeight = 'bold';
+items[1].style.backgroundColor = 'yellow';
+
+for(var i = 0; i < items.length; i++){
+	items[i].style.backgroundColor = '#f4f4f4';
+}
+
+
+They now have a backgroundColor of Grey.
+
+
+
+
+//GETELEMENTSBYTAGNAME.
+This works exactly the same way, except that instead of getting it by "class" you will get it by "tag"
+
+So let's grab all the   "li's"
+
+
+
+var li = document.getElementsByTagName('li');
+console.log(li);
+console.log(li[1]);
+li[1].textContent = 'hello 2';
+li[1].style.fontWeight = 'bold';
+li[1].style.backgroundColor = 'yellow';
+
+for(var i = 0; i < li.length; i++){
+	li[i].style.backgroundColor = '#f4f4f4';
+}
+
+
+This does the same thing as the className.
+Let's add another list item in the HTML.
+We still get the grey background even though we don't have an item of "list-group". This is because it is going by the "tag"  & not the "class"
+
+THE TAGNAME IS IDENTICAL TO THE CLASSNAME.
+
+
+
+//QUERYSELECTOR
+This is an important one.This is pretty much like jQuerry. The only big difference is that you use it for one item. If you want to use it for more than 1 item, then you can use querrySelectorAll.
+
+It only grabs the 1st one. so if we want to grab the class of "title" And ther is more than 1 title on the page, it will grab the 1st one. In the HTML, we'll get rid of the extra "li" we had.
+
+we can grab a class, li, tag, etc. We can use any css selector just like we could with jQuery.
+So we just replace the Jquerry money sign ($) with  document.querrySelector.
+So if we want to grab the header for instance, it has an id of "#main-header". we must use the  "#"
+
+
+
+var header = document.querySelector('#main-header');
+header.style.borderBottom = 'solid 4px #ccc';
+
+
+We can see the header now has the border of grey.
+
+
+Another thing we could select is the input.
+
+
+
+var header = document.querySelector('#main-header');
+header.style.borderBottom = 'solid 4px #ccc';
+
+var input = document.querySelector('input');
+input.value = 'Hello World'
+
+
+We now have "Hello World" in our input.
+
+THe Button is an input as well. So the QuerySelector only grabbed the 1st one by default.
+
+With querySelector, We can use any css selector. So let's target "submit" And change the value to "SEND".
+
+
+
+var header = document.querySelector('#main-header');
+header.style.borderBottom = 'solid 4px #ccc';
+
+var input = document.querySelector('input');
+input.value = 'Hello World'
+
+var submit = document.querySelector('input[type="submit"]');
+submit.value="SEND"
+
+
+The "submit" button has been changed to "send" 
+
+
+EG.
+
+var item = document.querySelector('.list-group-item');
+item.style.color = 'red';
+
+
+This will only change th 1st "list-group-item" to red.(because it's querySelector).
+To target the last, we'll say:
+
+var lastItem = document.querySelector('.list-group-item:last-child');
+lastItem.style.color = 'blue';
+
+
+CODE BELOW:
+
+
+
+var header = document.querySelector('#main-header');
+header.style.borderBottom = 'solid 4px #ccc';
+
+var input = document.querySelector('input');
+input.value = 'Hello World'
+
+var submit = document.querySelector('input[type="submit"]');
+submit.value="SEND"
+
+var item = document.querySelector('.list-group-item');
+item.style.color = 'red';
+
+var lastItem = document.querySelector('.list-group-item:last-child');
+lastItem.style.color = 'blue';
+
+
+
+We can see that item 1 is "red" & the last item (item 4) is red"
+
+
+We can also use our "nthchild"
+
+
+var secondItem = document.querySelector('.list-group-item:nthchild(2)');
+secondItem.style.color = 'coral';
+
+
+THE CODE BELOW:
+
+
+
+var header = document.querySelector('#main-header');
+header.style.borderBottom = 'solid 4px #ccc';
+
+var input = document.querySelector('input');
+input.value = 'Hello World'
+
+var submit = document.querySelector('input[type="submit"]');
+submit.value="SEND"
+
+var item = document.querySelector('.list-group-item');
+item.style.color = 'red';
+
+var lastItem = document.querySelector('.list-group-item:last-child');
+lastItem.style.color = 'blue';
+
+var secondItem = document.querySelector('.list-group-item:nth-child(2)');
+secondItem.style.color = 'coral';
+
+
+
+
+In the HTML Page, Item 2 is now coral.
+
+
+
+//QUERYSELECTORALL
+querySelectorAll works just like getElmentsByClassName, GetElementsByTagName. AND it's going to grab more than 1 thing. IT grabs tags,  id's, classes, etc.
+WE have 2   class="titles"   in our html  & we will grab them with our querySelectorAll.
+
+THE CODE
+
+
+var titles = document.querySelectorAll('.title');
+
+console.log(titles);
+
+
+
+
+In the console, it gives what's called the NodeList which is similar to a collection(we can also run Array functions on a NodeList)
+
+
+we can also change the items
+
+
+titles[0].textContent = 'Hello';
+
+
+THE CODE
+
+
+var titles = document.querySelectorAll('.title');
+
+console.log(titles);
+titles[0].textContent = 'Hello';
+
+
+
+let's change every other Li backgroundColor to grey
+we'll create a variable called "odd"
+
+
+var odd = document,querySelectorAll('li:nth-child(odd)');
+
+for(var i = 0; i < odd.length; i++){
+	odd[i].style.backgroundColor = '#f4f4f4';
+}
+
+
+THE CODE:
+
+
+
+var titles = document.querySelectorAll('.title');
+
+console.log(titles);
+titles[0].textContent = 'Hello';
+
+var odd = document.querySelectorAll('li:nth-child(odd)');
+
+for(var i = 0; i < odd.length; i++){
+	odd[i].style.backgroundColor = '#f4f4f4';
+}
+
+
+
+LEt's to fo even li"s
+
+
+var titles = document.querySelectorAll('.title');
+
+console.log(titles);
+titles[0].textContent = 'Hello';
+
+var odd = document.querySelectorAll('li:nth-child(odd)');
+var even = document.querySelectorAll('li:nth-child(even)');
+
+for(var i = 0; i < odd.length; i++){
+	odd[i].style.backgroundColor = '#f4f4f4';
+	even[i].style.backgroundColor = '#ccc';
+}
+
+
+
+we now have a darker grey background for the even li's.
+
+
+
+//TRAVERSING THE DOM (part2)
+It deals with moving up & down, Parent Nodes, child Nodes, Siblings.
+
+What parent nodes mean is (E.G Below):
+
+
+<div class="container">
+		<div id="main" class="card card-body">
+		<h2 class="title">Add Items</h2>
+		<form class="form-inline mb-3">
+			<input type="text" class="form-control mr-2">
+			<input type="submit" class="btn btn-dark" value="Submit">
+
+
+The h2 has a parent of the div with an id of "main". Because the h2 is inside the div with an id of "main".
+So the h2 is a child of the div. We also have siblings & the form is a sibling of the h2, because they are botrh inside the div with an id of "main".
+
+How to query parent & siblings, child & all that. 
+
+PARENT NODE PRPPERTY.
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.parentNode);
+
+
+So it gives us the div with the id of "main"
+The ul with the id of "items" is what we selected & the div with the id of "main" is the parent. The form & h2 are the siblings.
+
+
+we can use the parentNode as a selector. eg.
+
+itemList.parentNode.style.backgroundColor = '#f4f4f4';
+
+
+the above code will change the background of the div with the id of "main"
+
+THE CODE:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.parentNode);
+
+itemList.parentNode.style.backgroundColor = '#f4f4f4';
+
+
+So the parentNode (div with an id of "main") now has the backgroundColor.
+
+console.log(itemList.parentNode.parentNode);
+
+THe above code will get us the parentNode of the div with the id of "main". THE full code below:
+
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.parentNode);
+
+itemList.parentNode.style.backgroundColor = '#f4f4f4';
+console.log(itemList.parentNode.parentNode);
+
+
+IN THE CONSOLE, we get the div with a class of "container". Which is the parentNode of the div with the id of "main".
+
+console.log(itemList.parentNode.parentNode.parentNode);
+
+THe ABOVE CODE will give us the parentNode of the Div with a class of "container". FULL CODE BELOW:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.parentNode);
+
+itemList.parentNode.style.backgroundColor = '#f4f4f4';
+console.log(itemList.parentNode.parentNode.parentNode);
+
+
+IN the console, we'll get the "body". Which is the parentNode of the div with the class of "container".
+
+
+///PARENTELEMENT.
+parentElement is essentially the same thing as the parentNode. THE CODE BELOW:
+
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.parentElement);
+
+itemList.parentElement.style.backgroundColor = '#f4f4f4';
+console.log(itemList.parentElement.parentElement.parentElement);
+
+
+
+We will get the same thing in the console, which is "body". The parentElement of The div with a class of "container."
+PARENTNODE & PARENTELEMENT FOR THE most part can be interchangeable.
+
+
+
+/////CHILDNODES (THE ChildNode is not useful. WHAT WE USE IS "children")
+
+eg:below
+
+console.log(itemList.children);
+
+THE CODE:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+
+
+We will get the list items in our console (just the elements. It won't look at the line breaks as textNodes ).
+The li's is actually an HTML collection, it is no longer a nodeList.
+
+If we want to access a specific child(list item 2 with the index of "1")
+
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+
+
+
+IT WILL list out item 2 in the console.
+
+
+WE Can do something with that particular child(like applying some style. changing the backgroundColor).
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor = 'yellow';
+
+
+The background has been changed to yellow.
+
+
+///FIRSTCHILD(FirstChild is useless USE FIRST ELEMENT INSTEAD)
+We also have a property called firstChild
+
+console.log(itemList.firstChild);
+
+THE CODE.
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor = 'yellow';
+console.log(itemList.firstChild);
+
+
+
+THis will actually give us the textNode.(WE WILL ALWAYS GET A TEXTNODE WITHOUT ADDING "ELEMENT")
+///////////////////////////////////////////////
+
+//FIRSTELEMENTCHILD
+
+console.log(itemList.firstElementChild)		CODE BELOW:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor = 'yellow';
+console.log(itemList.firstElementChild);
+
+
+So we'll get the "list Item 1"
+
+
+we can change the text of the firstChild. CODE bELow:
+
+itemList.firstElementChild.textContent = 'Hello 1';
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor = 'yellow';
+console.log(itemList.firstElementChild);
+itemList.firstElementChild.textContent = 'Hello 1';
+
+
+WE HAVE NOW CHANGED THE "Item 1" to "Hello"
+
+
+////LASTCHILD(LASTELEMENTCHILD)
+We also have lastElementChild.
+This does the same thing as the firstElementChild
+
+itemList.lastElementChild.textContent ='Hello 1';	THE CODE BELOW:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor = 'yellow';
+
+console.log(itemList.lastElementChild);
+itemList.lastElementChild.textContent ='Hello 1';
+
+
+
+////SIBLINGS
+
+nextElementSibling
+
+console.log(itemList.nextElementSibling);
+
+
+THe itemList does not have a nextElementSibling. So if we put a <span>  in our HTML, We'll get the <span>   as our nextElementSibling.
+So I just chose something that doesn't have a next sibling
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.nextElementSibling);
+
+
+
+///PREVIOUS SIBLING
+
+console.log(itemList.previousElementSibling);
+
+THE CODE:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.previousElementSibling);
+
+
+
+So we will get the h2 with a class of title that says "Items". Because the sibling before the "ul" is the "h2"
+
+We can Change the color.
+
+itemList.previousElementSibling.Style.color = 'green'
+
+THE CODE BELOW:
+
+
+var itemList = document.querySelector('#items');
+console.log(itemList.previousElementSibling);
+itemList.previousElementSibling.style.color = 'green'
+
+
+
+"Item" in the "h2" is now color green(we can also add the style of backgroundColor if we want)
+
+
+We can select anything we want and we can do anything we want with javascript. We don't neccesarily need jQuery.
+
+jQuery adds that extra file to your page & just slows down much. There are a lot of nice stuffs on jQuery like hardcore annimations & scroll effects. BUT for simple DOM manipulations, there's really no need for jQuery.
+
+
+////CREATING DOM ELEMENTS FROM JAVASCRIPT AND INSERTING THEM.
+how to create elements and insert them.
+We'll be looking at a method called "createElement"
+
+First, we will create a Div
+
+
+var newDiv = document.createElement('div');
+
+console.log(newDiv);
+
+
+
+In the console log, we'll just have a single Div
+
+We can do different things with this Div. We can add a class to the Div.
+
+newDiv.className= 'hello';
+
+THE CODE
+
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+console.log(newDiv);
+
+
+The Div noe has a class of "hello".
+
+
+WE CAN ADD AN ID TO IT
+
+newDiv.id = 'hello1'
+
+THE CODE
+
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+newDiv.id = 'hello1'
+
+console.log(newDiv);
+
+
+
+IT has a class of "hello" AND an id of "hello1"
+
+
+
+We can also add attribute to the Div
+
+newDiv.setAttribute('title', 'Hello Div');
+
+THE CODE
+
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+newDiv.id = 'hello1'
+
+newDiv.setAttribute('title', 'Hello Div');
+
+console.log(newDiv);
+
+
+
+We can see it has a title on it.
+
+
+
+What if we want to insert something inside the Div. Because right now, we just have the Div, we don't have a content in it.
+For that, we will have to create a textNode. then we will create a variable called "newDivTExt"
+
+var newDivText = document.createTextNode('Hello World');
+
+newDiv.appendChildChild(newDivText);
+
+
+
+THE CODE:
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+newDiv.id = 'hello1'
+
+newDiv.setAttribute('title', 'Hello Div');
+
+var newDivText = document.createTextNode('Hello World');
+
+newDiv.appendChild(newDivText);
+
+console.log(newDiv);
+
+
+
+Now "Hello World" is inside of the Div
+
+
+
+So we have constructed this all from javascript. we ant to put it in the DOM, because it is just existing inside our javascript.
+We want to put it in the "header", right below the div with a class of "container". We will create a variable called "container".
+THEN we will use the querySelector & say in the header, we want the container class. And we'll grab the "h1" and set it to 		document.queryselector. 
+Then we will use the insertBefore method, & it will contain 2 parameters.
+1. what we are inserting (newDiv)
+2. what we arte insertingBefore (h1)
+
+
+var container = document.querySelector('header .container');
+var h1 = document.querySelector('header h1');
+
+console.log(newDiv);
+
+container.insertBefore(newDiv, h1);
+
+
+THE CODE:
+
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+newDiv.id = 'hello1'
+
+newDiv.setAttribute('title', 'Hello Div');
+
+var newDivText = document.createTextNode('Hello World');
+
+newDiv.appendChild(newDivText);
+
+
+var container = document.querySelector('header .container');
+var h1 = document.querySelector('header h1');
+
+console.log(newDiv);
+
+container.insertBefore(newDiv, h1);
+
+
+
+We now have "Hello World at the top of the header". And if we check it, it has the id, title, and the text that we constructed in the javascript.
+
+
+TO CHANGE THE FONT SIZE:
+
+newDiv.style.fontSize = '30px';
+
+THE CODE:
+
+
+
+var newDiv = document.createElement('div');
+
+newDiv.className = 'hello';
+
+newDiv.id = 'hello1'
+
+newDiv.setAttribute('title', 'Hello Div');
+
+var newDivText = document.createTextNode('Hello World');
+
+newDiv.appendChild(newDivText);
+
+
+var container = document.querySelector('header .container');
+var h1 = document.querySelector('header h1');
+
+console.log(newDiv);
+
+newDiv.style.fontSize = '30px'
+
+container.insertBefore(newDiv, h1);
+
+
+The fontSize is now bigger. It can be treated just like every other DOM element. so it is now part of the DOM
+
+
+
+
+///////////////////EVENTS.
+ (we will use eventstd.html  here)
+In the HTML, we will create a button element with an id of "button"
+
+
+We will use getElementbyId here. Since we have an id of "button". then we will create a variable and call it buttton. then we use "addEventListener" and then we listen for a "click" event.And then we run a function.
+
+
+
+var button = document.getElementById('button').addEventListener('click', function(){
+	console.log(123);
+});
+
+function buttonClick(){
+	console.log('Button Clicked');
+}
+
+
+
+we get "123" in the cosole log everytime I click on the "click here" button.
+
+
+
+we can also use a Name function Eg.
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(){
+	console.log('Button Clicked');
+}
+
+
+
+In the console log. We get the same result as the previous code. We get "button Clicked". it is calling the function in the code.
+
+
+
+If we want to take the header title & make it change when we click the "click here"  button.
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(){
+document.getElementById('header-title').textContent = 'Changed';
+}
+
+
+THE HEADER gets changed when we click the button.
+
+To change the backgroundColo of the "main" id.
+
+
+document.querySelector('main').style.backgroundColor =
+'#f4f4f4';
+
+
+THE CODE:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(){
+document.getElementById('header-title').textContent = 'Changed';
+document.querySelector('#main').style.backgroundColor =
+'#f4f4f4';
+}
+
+
+
+WHEN WE CLICK, the backgroundColor of the div with an id of "main" changes to grey.
+
+We can integerate these DOM properties that we have learnt & add them to events.
+
+
+We will pass in an event parameter here. When you listen for an event & you run a function, you can pass in this parameter.
+
+console.log(e)		(e means event).
+
+THE CODE:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e);
+}
+
+
+
+Console.log(e)		can also be spelt out as "event"
+We will get some different properties(we can get all kind of stuffs from there). the className of the element, id's and attribute of the element. (we can get the positin of the mouse. client X, client Y .
+
+
+
+
+This code below  gives us the actual element that was clicked.
+
+console.log(e.target);
+
+THE CODE BELOW:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+}
+
+
+
+It works for not just "click". If this was for a keydown event on an input, It will give us the input, instead of giving us the button.
+
+
+
+To get the id of the button:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+console.log(e.target.id);
+}
+
+
+
+When we click, we get the id of the button. which is "button"
+
+
+To get the class:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+console.log(e.target.id);
+console.log(e.target.className);
+}
+
+
+WHEN we click, we get the className.We get the whole string of the classes. Which is "btn btn-dark btn-block"
+
+
+
+There is also a method called "classList"
+
+console.log(e.target.classList);
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+console.log(e.target.id);
+console.log(e.target.className);
+console.log(e.target.classList);
+}
+
+
+
+And we get the DOMTokenList. IT is kind of like an Array of the classList
+
+
+
+let's get an output to the DOM. We'll put a div with an id of "output in our HTML".
+
+var output = document.getElementById('output');
+output.innerHTML = '<h3>'+e.target.id+'</h3>';
+
+THE CODE
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+console.log(e.target.id);
+console.log(e.target.className);
+console.log(e.target.classList);
+var output = document.getElementById('output');
+output.innerHTML = '<h3>'+e.target.id+'</h3>';
+}
+
+
+
+When we click, the id will get output to the DOM.(button now displays in our HTML). We are just experimenting.We don't need to do this, but just to know that you can.
+
+
+
+We can get the event "type" by:
+
+console.log(e.type);
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.target);
+console.log(e.target.id);
+console.log(e.target.className);
+console.log(e.target.classList);
+var output = document.getElementById('output');
+output.innerHTML = '<h3>'+e.target.id+'</h3>';
+
+console.log(e.type);
+}
+
+
+
+AND we get the event "type" which is a "click" event.
+
+
+
+We can look at the position of the mouse.
+
+console.log(e.clientX);
+
+THE CODE:
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.clientX);
+}
+
+
+
+We get the mouse position when we click. ClientXis actually the position of the mouse "sideways".
+
+
+Let's do clientY
+
+console.log(e.clientY);
+
+THE CODE:
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.clientY);
+}
+
+
+ClientY will get the mouse position from the top-down
+
+
+
+(clientX & Y's position IS FROM THE WINDOW)
+TO get the mouse position from the actual element that you are inside of. THEN WE use offsetX & offsetY
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.offsetX);
+}
+
+
+
+WE can do offsetY
+
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.offsetY);
+}
+
+
+
+
+Client is from the window & offset is from ACTUAL ELEMENT.
+
+
+
+We can also test to see if you are holding down the Alt key or Shift key
+
+console.log(e.altKey);
+
+
+var button = document.getElementById('button').addEventListener('click', buttonClick);
+
+function buttonClick(e){
+
+console.log(e.altKey);
+}
+
+
+If I click on the button without holding down the "altkey". the console will bring out a "false" message.
+BUT if I hold down my "altKey", we get "true"
+
+
+We can do things based on if we are holding these keys down or not.
+
+we can do the same for the following keys:
+
+console.log(e.altKey);
+console.log(e.ctrlKey);
+console.log(e.shiftKey);
+
+
+We can also attach an "if statement" to them.
+
+
+
+LET'S LOOK AT THE DIFFERENT MOUSE EVENTS.
+Different events based on different actions.
+I'll create a new function called "runEvent"
+
+
+
+var button = document.getElementById('button');
+
+button.addEventListener('click', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+We will get the event type in the console. Which is "click".
+
+
+WE"LL LOOK AT another type of event.
+We will look at doubleClick
+
+
+
+var button = document.getElementById('button');
+
+button.addEventListener('dblclick', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+If we click, nothing happens. We'll get the message when we doubleClick
+
+
+
+//MOUSEDOWN EVENT.
+
+
+
+var button = document.getElementById('button');
+
+button.addEventListener('mousedown', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+AS SOON as I click down, the mousedown event runs.It doesn't wait for me to lift up anything.
+
+
+
+///MOUSEUP EVENT
+
+
+var button = document.getElementById('button');
+
+button.addEventListener('mouseup', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+If I click 7 hold, Nothing happens. but if I release, then the event fires off. THERe is a difference between mousedown & mouseup.
+
+
+WE WILL TEST SOME OTHER EVENTS, BUT NOT WITH THE BUTTON. BUT WITH A DIV. SO, we'll create a div in our HTML. 
+We now have a grey box in our HTML. With an id of "box",so we can grab on to it.
+We will create another variable called "box" & we'll get it by id. THEN WE WILL look at the mouseenter event
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mouseenter', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+As soon as I enter the box, the event fires (even without clicking). If I go out & keep going in, the event will keep firing.
+
+
+
+////////////MOUSELEAVE
+We also have mouseleave
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mouseenter', runEvent);
+box.addEventListener('mouseleave', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+We'll get a message in the console, when we enter & leave. 
+
+
+
+/////////MOUSEOVER  AND  MOUSEOUT.
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mouseenter', runEvent);
+box.addEventListener('mouseover', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+THE DIFFERENCE BETWEEN MOUSEENTER & MOUSEOVER.
+ Let's put in an h3 in the "box".
+ If we enter, mouseover & mouseenter will fire off.
+ If we go over the "HELLO". Only the mouseover fires off.
+ THe mouseenter is for the element itself. But the mouseover will be for any inner element.
+The mouseenter is for the Parent element.
+
+IT is the same thing with MOUSELEAVE & MOUSEOUT.
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mouseleave', runEvent);
+box.addEventListener('mouseout', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+If we the parent element, we get both messages, but if we leave from the element inside, we get just "mouseout"
+
+
+
+///////////MOUSEMOVE
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mousemove', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+This will fire when we move our mouse inside the box.
+
+we can actually grab the position of the mouse in the box.
+We will then output the mouse position into our browser.
+
+output.innerHTML = '<h3>MouseX: '+e.offsetX+' </h3><h3>MouseY: '+e.offsetY+'</h3>';
+
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mousemove', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+output.innerHTML = '<h3>MouseX: '+e.offsetX+' </h3><h3>MouseY: '+e.offsetY+'</h3>';	
+}
+
+
+
+Now this code is tracking our mouse position inside as we move it.
+
+
+
+////////////////////COLOR EFFECTS/////////
+
+NOW WE TAKE THE red & green from rgb & connect them to the offset numbers. (for the blue, we put "40")
+
+ box.style.backgroundColor = "rgb("+e.offsetX+","+e.offsetY+",40)";
+
+THE CODE:
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mousemove', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+box.style.backgroundColor = "rgb("+e.offsetX+","+e.offsetY+",40)";
+}
+
+
+THE color of the box is changing. because it is changing the value of this rgb.
+IT is changing the first two parameters based on where ever the mouse is.
+
+
+
+
+WE CAN ACTUALLY CHANGE THE COLOR OF THE BODY IN THE SAME BY moving the mouse around the box.
+
+
+
+var button = document.getElementById('button');
+var box = document.getElementById('box');
+
+box.addEventListener('mousemove', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+document.body.style.backgroundColor = "rgb("+e.offsetX+","+e.offsetY+",40)";
+}
+
+
+
+So the backgroundColor of the body changes as we move our mouse around the box.
+
+
+
+////////KEYBOARD AND INPUT EVENTS
+We will make use of our form in the HTML here. (we will use the run event)
+We will now grab on to the input.
+
+KEYDOWN EVENT
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('keydown', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+
+The event fires off each time I type in the input in the browser.
+
+
+
+IF WE WANT TO CATCH WHAT WE ARE TYPING IN THE FORM INPUT:
+
+console.log(e.target.value);
+
+THE CODE
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('keydown', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+	console.log(e.target.value);	
+}
+
+
+
+
+
+/////////HOW TO MAKE WHAT YOU ARE TYPING DISPLAY SOMEWHERE ELSE//////////
+
+We can TAKE WHAT WE ARE TYPING and output it somewhere.
+Let's output it in the output below the list items.
+
+document.getElementById('output').innerHTML = '<h3>'+e.target.value+'</h3>';
+
+THE CODE:
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('keydown', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+	console.log(e.target.value);
+	document.getElementById('output').innerHTML = '<h3>'+e.target.value+'</h3>';	
+}
+
+
+
+It will Output what we have typed Down into the Output below the ul's
+
+
+
+
+///KEYUP EVENT
+THE keyup event will run when you release the key.
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('keydown', runEvent);
+itemInput.addEventListener('keyup', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+
+When I push down the key, I get "keydown". and when I release the key, I get "keyup"
+
+
+
+//////KEY PRESS
+Keypress executes when we press any key
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('keypress', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+We get a message in the console for every key we press.
+
+
+//////WE ALSO HAVE OTHER EVENTS THAT ARE ATTACHED TO TEXT INPUTS LIKE THIS.
+We have the "focus" & "blur".
+So let's change the "itemInput" to "focus"
+
+Focus is when you click on the input & it becomes light & focused.
+
+////FOCUS
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('focus', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+/////BLUR
+If we click in, we get "focused", if we click out, we get "blur".
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('focus', runEvent);
+itemInput.addEventListener('blur', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+
+////////CUT AND PASTE
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('cut', runEvent);
+itemInput.addEventListener('paste', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+the event fires off everytime we cut & paste in the browser.
+
+We can cut out the browser document as well:
+(THIS IS A STUPID EXAMPLE)
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('cut', runEvent);
+itemInput.addEventListener('paste', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+	document.body.style.display = 'none'
+
+}
+
+
+(THE ABOVE IS A STUPID EXAMPLE)
+
+
+
+///////////////INPUT
+THE input will actually run when you do anything with an input. IF I cut, we get input, if I paste, we get input
+
+
+
+var itemInput = document.querySelector('input[type="text"]');
+var form = document.querySelector('form');
+
+itemInput.addEventListener('input', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+	
+}
+
+
+
+
+I WILL ADD IN A SELECT LIST NOW (A SELECT BOX).
+We will add a select list in our html.Right under the "text" input.
+We now have aselectList. So if you want something to fire off when you choose, We can use the change event.
+we will create a variable for this event below:
+
+var select = document.querySelector('select');
+
+THE CODE:
+
+
+
+var itemInput = document.querySelector('input[type="text"]'); 
+var form = document.querySelector('form'); 
+var select = document.querySelector('select');
+
+select.addEventListener('change', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+}
+
+
+
+
+TO GET the value:
+
+console.log(e.target.value);
+
+THE CODE:
+
+
+
+
+var itemInput = document.querySelector('input[type="text"]'); 
+var form = document.querySelector('form'); 
+var select = document.querySelector('select');
+
+select.addEventListener('change', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+	console.log(e.target.value);
+}
+
+
+
+when we select. we will get the value. be it 1, 2, 3.
+
+
+
+WE CAN LISTEN FOR INPUT AS WELL.
+
+
+
+var itemInput = document.querySelector('input[type="text"]'); 
+var form = document.querySelector('form'); 
+var select = document.querySelector('select');
+
+select.addEventListener('change', runEvent);
+select.addEventListener('input', runEvent);
+
+function runEvent(e){
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+In the console log, We will get "input" and change when we select on the select list.
+
+
+//////////////SUBMIT EVENT.
+This will be on the form.
+We would get a message from the console when we submit.
+
+THE CODE:
+
+
+var itemInput = document.querySelector('input[type="text"]'); 
+var form = document.querySelector('form'); 
+var select = document.querySelector('select');
+
+form.addEventListener('submit', runEvent);
+
+function runEvent(e){
+	e.preventDefault();
+	console.log('EVENT TYPE: '+e.type);
+
+}
+
+
+
+Our code is working in the browser.It isn't submitting to an external file or whatever it does by default. 
+
+
+
+/////////////  PROJECT ////////
+We'll use (eventsprj.html) here
+
+
+We want to be able to add an item, type something into our "add items" box in the browser. This will take an event. A "submit" event on our form. The form has an id of "addform".
+So we will create a variable called "form".
+we will also create a variable for the "ul"  & we will getElementById. We can use querySelector if you want. However we select it is fine.
+We have those 2 things in variables. & we will create a form Submit event, THen preventDefault   in order for the default submission of form to not happen.
+
+THE CODE:
+
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+
+form.addEventListener('submit', addItem);
+
+function addItem(e){
+	e.preventDefault();
+
+	console.log(1);
+}
+
+
+
+we will get in our console whatever we type into the "addItems" box
+
+
+TO get the value of the input in the form:
+We need to be very specific when giving id names.
+
+var newItem = document.getElementById('item').value;
+
+THE CODE:
+
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+
+form.addEventListener('submit', addItem);
+
+function addItem(e){
+	e.preventDefault();
+
+var newItem = document.getElementById('item').value;
+
+	console.log(1);
+}
+
+
+//Create new li element.
+
+var li = document.createElement('li');
+
+
+///Add class:
+
+li.className = 'list-group-item';
+
+///Add text node with input value:
+
+li.appendChild(document.createTextNode(newItem));
+
+
+///Create del button element
+
+var deletebtn = document.createElement('button');
+
+
+////Add classes to del button
+
+deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+
+////Append text node
+
+deleteBtn.appendChild(document.createTextNode('X'));
+
+
+//Append button to li
+
+li.appendChild(deleteBtn);
+
+
+//Append li to list
+
+itemList.appendChild(li);
+
+
+THE CODE:
+
+
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+
+form.addEventListener('submit', addItem);
+
+function addItem(e){
+	e.preventDefault();
+
+var newItem = document.getElementById('item').value;
+
+var li = document.createElement('li');
+
+li.className = 'list-group-item';
+
+li.appendChild(document.createTextNode(newItem));
+
+var deleteBtn = document.createElement('button');
+
+deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+deleteBtn.appendChild(document.createTextNode('X'));
+
+li.appendChild(deleteBtn);
+
+itemList.appendChild(li);
+}
+
+
+
+We now have our text & delete button sdded to the browser.
+That part is done. We can now add items.
+
+
+HOW do we remove items?.
+We will take an itemList & add an eventListener to it
+
+itemList.addEventListener('click', removeItem);
+ 
+ & below the code, we will create a function caled remove item:
+
+function removeItem(e){
+	if(e.target.classList.contains('delete')){
+		if(confirm('Are You Sure?')){
+			var li = e.target.parentElement;
+			itemList.removeChild(li);
+	}
+}
+}
+
+
+
+THE CODE:
+
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+
+form.addEventListener('submit', addItem);
+
+itemList.addEventListener('click', removeItem);
+
+function addItem(e){
+	e.preventDefault();
+
+var newItem = document.getElementById('item').value;
+
+var li = document.createElement('li');
+
+li.className = 'list-group-item';
+
+li.appendChild(document.createTextNode(newItem));
+
+var deleteBtn = document.createElement('button');
+
+deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+deleteBtn.appendChild(document.createTextNode('X'));
+
+li.appendChild(deleteBtn);
+
+itemList.appendChild(li);
+}
+
+
+function removeItem(e){
+	if(e.target.classList.contains('delete')){
+		if(confirm('Are You Sure?')){
+			var li = e.target.parentElement;
+			itemList.removeChild(li);
+	}
+}
+}
+
+
+
+We can now add and delete items in our browser. BUT if we reload, they will come back because they are not persisting anywhere.
+
+
+
+HOW TO FILTER ITEMS.
+The search input has an id of "filter"
+
+var filter = document.getElementById('filter');
+
+
+Then we create an event:
+
+filter.addEventlistener('keyup', filterItems);
+
+
+then we create another function, we filter the "li", then convert the li's to an Array rather than an html collection:
+
+
+function filterItems(e){
+	var text = e.target.value.toLowerCase();
+	var items = itemList.getElementsByTagName('li');
+
+	Array.from(items).forEach(function(item){
+	var itemName = item.firstChild.textContent;
+	if(itemName.toLowerCase().indexOf(text) != -1){
+		item.style.display = 'block';
+	} else {
+		item.style.display = 'none';
+}
+});
+}
+
+
+
+THE CODE:
+
+
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
+
+form.addEventListener('submit', addItem);
+
+itemList.addEventListener('click', removeItem);
+filter.addEventListener('keyup', filterItems);
+
+function addItem(e){
+	e.preventDefault();
+
+var newItem = document.getElementById('item').value;
+
+var li = document.createElement('li');
+
+li.className = 'list-group-item';
+
+li.appendChild(document.createTextNode(newItem));
+
+var deleteBtn = document.createElement('button');
+
+deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+deleteBtn.appendChild(document.createTextNode('X'));
+
+li.appendChild(deleteBtn);
+
+itemList.appendChild(li);
+}
+
+
+function removeItem(e){
+	if(e.target.classList.contains('delete')){
+		if(confirm('Are You Sure?')){
+			var li = e.target.parentElement;
+			itemList.removeChild(li);
+	}
+}
+}
+
+
+function filterItems(e){
+	var text = e.target.value.toLowerCase();
+	var items = itemList.getElementsByTagName('li');
+
+	Array.from(items).forEach(function(item){
+	var itemName = item.firstChild.textContent;
+	if(itemName.toLowerCase().indexOf(text) != -1){
+		item.style.display = 'block';
+	} else {
+		item.style.display = 'none';
+}
+});
+}
+
+
+
+
+WE CAN NOW FILTER THROUGH OUR ITEMS IN THE BROWSER.
+
+We have built a very simple interface using javaScript.
+We can use local storag, so our items can get saved in the local storage. that way, if we reload the page or leave & come back, the items will still be there.
+
+
+
+
+
+/////FONT AWESOME ANIMATION. 
+Font Awesome is an iconic library where we can add icons using just css classes. All you have to do is to import the Font awesome stylesheet. we can do that remotely through a CDN.
+
+
+We can have a website with 3 boxes of animations to make it look nice.
